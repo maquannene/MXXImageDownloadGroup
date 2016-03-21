@@ -7,6 +7,6 @@ Pod::Spec.new do |s|
   s.source   = { :git => 'https://github.com/maquannene/MQImageDownloadGroup.git', :tag => '1.0' }
   s.source_files  = "ImageDownloadGroup/*.{h,m}"
   s.framework    = 'UIKit'
-  s.dependency = 'SDWebImage', '~> 3.6'
+  s.dependency  'SDWebImage', '~> 3.6'
   s.requires_arc = true
 end
