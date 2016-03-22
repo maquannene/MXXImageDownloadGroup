@@ -122,7 +122,7 @@
         __block id <SDWebImageOperation> operation = [[SDWebImageManager sharedManager] downloadImageWithURL:url options:options progress:progressBlock completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (operation && identifier) {
-                    [[MQImageDownloadGroupManage shareInstance] removeImageDownLoadOperation:operation fromGroup:self.mq_downloadGroupIdentifier forKey:self.mq_imageURL.absoluteString];
+                    [[MQImageDownloadGroupManage shareInstance] removeImageDownLoadOperation:operation fromGroup:identifier forKey:imageURL.absoluteString];
                 }
                 if (!weakSelf) {
                     return;
