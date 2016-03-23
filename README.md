@@ -2,7 +2,7 @@
 
 A image download group based on the SDWebImage, UIImageView download can divide groups and limit group concurrent.
 
-#### The Problem I Use SDWebImage Category
+### The Problem I Use SDWebImage Category
 
 If you use SDWebIamge/UIImageView+WebCache, you maybe written this code:
 
@@ -37,7 +37,7 @@ As is known to all, UITableViewCell can be reused, so when cell is resued, the a
 
 so, we can realize that if we need load image completion by use `sd_setImageWithURL:..`, we must be sure the imageView not be reuse, but to tableViewCell, it`s reuse usually and frequently. 
 
-#### Begin Use MQImageDownloadGroup
+### Begin Use MQImageDownloadGroup
 
 So, I write a new UIImageView category to load image, based on the SDWebImage, if you has same problem, you can use `UIImageView+mq_WebCache` and just modify one line of code：
 
@@ -69,6 +69,8 @@ customGroup.maxConcurrentDownloads = 99;
                          }];
 
 ```
+
+### Installation
 
 If you need it, 
 
