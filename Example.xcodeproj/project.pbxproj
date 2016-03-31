@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D42D1CEB1CAD801000EA0CA9 /* ExCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42D1CEA1CAD801000EA0CA9 /* ExCustomTableViewCell.m */; };
 		D4734C1C1CA162C800C00322 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4734C151CA162C800C00322 /* SDWebImage.framework */; };
 		D4734C1D1CA162C800C00322 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4734C151CA162C800C00322 /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4734C7B1CA1639100C00322 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D4734C5C1CA1639100C00322 /* Info.plist */; };
@@ -75,6 +76,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D42D1CE91CAD801000EA0CA9 /* ExCustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExCustomTableViewCell.h; sourceTree = "<group>"; };
+		D42D1CEA1CAD801000EA0CA9 /* ExCustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExCustomTableViewCell.m; sourceTree = "<group>"; };
 		D4734BA81CA161DF00C00322 /* SDWebImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImage.h; sourceTree = "<group>"; };
 		D4734BAA1CA161DF00C00322 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4734C151CA162C800C00322 /* SDWebImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SDWebImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,6 +213,8 @@
 				D4F56E491C9FA26C00E27438 /* AppDelegate.m */,
 				D4F56E4B1C9FA26C00E27438 /* ViewController.h */,
 				D4F56E4C1C9FA26C00E27438 /* ViewController.m */,
+				D42D1CE91CAD801000EA0CA9 /* ExCustomTableViewCell.h */,
+				D42D1CEA1CAD801000EA0CA9 /* ExCustomTableViewCell.m */,
 				D4F56E4E1C9FA26C00E27438 /* Main.storyboard */,
 				D4F56E511C9FA26C00E27438 /* Assets.xcassets */,
 				D4F56E531C9FA26C00E27438 /* LaunchScreen.storyboard */,
@@ -390,6 +395,7 @@
 				D4F56E4D1C9FA26C00E27438 /* ViewController.m in Sources */,
 				D4F56E621C9FCAD000E27438 /* UIImageView+mq_WebCache.m in Sources */,
 				D4F56E4A1C9FA26C00E27438 /* AppDelegate.m in Sources */,
+				D42D1CEB1CAD801000EA0CA9 /* ExCustomTableViewCell.m in Sources */,
 				D4F56E611C9FCAD000E27438 /* MQImageDownloadGroupManage.m in Sources */,
 				D4F56E471C9FA26C00E27438 /* main.m in Sources */,
 			);
@@ -581,6 +587,7 @@
 				D4734C201CA162C800C00322 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D4F56E3D1C9FA26C00E27438 /* Build configuration list for PBXProject "Example" */ = {
 			isa = XCConfigurationList;

@@ -7,8 +7,15 @@
 //
 
 #import "ViewController.h"
+#import "ExCustomTableViewCell.h"
+#import "MQImageDownloadGroupManage.h"
+#import "SDWebImage.h"
 
-@interface ViewController ()
+static NSString *randomPicURL = @"http://7xr4g8.com1.z0.glb.clouddn.com/";
+
+@interface ViewController () <UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -22,6 +29,32 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)clearCache:(id)sender {
+    [[SDImageCache sharedImageCache] clearMemory];
+    [[SDImageCache sharedImageCache] clearDisk];
+    [_tableView reloadData];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 100;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identifier = @"customCell";
+    
+    ExCustomTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    NSURL *sdImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%ld", randomPicURL, (long)indexPath.row]];
+
+    NSURL *mqImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%ld", randomPicURL, (long)indexPath.row + 100]];
+    
+    [cell setImageWithURLs:@[sdImageURL, mqImageURL]];
+    
+    return cell;
 }
 
 @end
