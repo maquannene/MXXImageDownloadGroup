@@ -39,7 +39,7 @@ NSString *const MQImageDownloadDefaultGroupIdentifier = @"mq.download.group.defa
     if (self) {
         _downloadOperationsDic = [@{} mutableCopy];
         _downloadOperationKeys = [@[] mutableCopy];
-        _maxConcurrentDownloads = 10;
+        _maxConcurrentDownloads = 20;
         _identifier = [identifier copy];
     }
     return self;
@@ -91,6 +91,11 @@ NSString *const MQImageDownloadDefaultGroupIdentifier = @"mq.download.group.defa
 - (void)setImageDownLoadOperation:(id<SDWebImageOperation>)operation toGroup:(NSString *)identifier forKey:(NSString *)key
 {
     MQImageDownloadGroup *downloadGroup = _downloadGroupsDic[identifier];
+    if (!downloadGroup) {
+        downloadGroup = [[MQImageDownloadGroup alloc] initWithGroupIdentifier:identifier];
+        _downloadGroupsDic[identifier] = downloadGroup;
+    }
+    
     NSMutableArray<NSString *> *downloadOperationKeys = downloadGroup->_downloadOperationKeys;
     
     if (downloadGroup && downloadOperationKeys) {
