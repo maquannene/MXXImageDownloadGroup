@@ -2,6 +2,8 @@
 
 A image download group based on the SDWebImage, UIImageView download can divide groups and limit number of concurrent in group.
 
+<p align="center"><img src="https://github.com/maquannene/MQImageDownloadGroup/blob/master/demo.gif"/></p>
+
 ### The Problem I Use SDWebImage Category
 
 If you use SDWebIamge/UIImageView+WebCache, you maybe written this code:
@@ -49,7 +51,7 @@ So, I write a new UIImageView category to load image, based on the SDWebImage, i
                          }];
 ```
 
-it add your download operation into a group named "customGroupID"，and the group default `maxConcurrentDownloads` is 20, means support most 10 different URLs to download at the same time. When download URLs count is more than `maxConcurrentDownloads`, the oldest URL`s download operations will be cancel. 
+it add your download operation into a group named "customGroupID"，and the group default `maxConcurrentDownloads` is 10, means support most 10 different URLs to download at the same time. When download URLs count is more than `maxConcurrentDownloads`, the oldest URL`s download operations will be cancel. 
 
 Of course, you can custom create `MQImageDownloadGroup` like this:
 
