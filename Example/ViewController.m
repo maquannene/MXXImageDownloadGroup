@@ -8,8 +8,8 @@
 
 #import "ViewController.h"
 #import "ExCustomTableViewCell.h"
-#import "MQImageDownloadGroupManage.h"
-#import "SDWebImage.h"
+#import "MSDImageDownloadGroupManage.h"
+@import SDWebImage;
 
 static NSString *randomPicURL = @"http://7xr4g8.com1.z0.glb.clouddn.com/";
 
@@ -50,9 +50,9 @@ static NSString *randomPicURL = @"http://7xr4g8.com1.z0.glb.clouddn.com/";
     
     NSURL *sdImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%ld", randomPicURL, (long)indexPath.row]];
 
-    NSURL *mqImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%ld", randomPicURL, (long)indexPath.row + 100]];
+    NSURL *msdImageURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@%ld", randomPicURL, (long)indexPath.row + 100]];
     
-    [cell setImageWithURLs:@[sdImageURL, mqImageURL]];
+    [cell setImageWithURLs:@[sdImageURL, msdImageURL]];
     
     return cell;
 }

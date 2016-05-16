@@ -7,16 +7,16 @@
 //
 
 #import "ExCustomTableViewCell.h"
-#import "SDWebImage.h"
-#import "UIImageView+mq_WebCache.h"
+@import SDWebImage;
+#import "UIImageView+msd_WebCache.h"
 
 @interface ExCustomTableViewCell ()
 
 {
     __weak IBOutlet UIImageView *_sdImageView;
-    __weak IBOutlet UIImageView *_mqImageView;
+    __weak IBOutlet UIImageView *_msdImageView;
     __weak IBOutlet UIProgressView *_sdImageLoadProgressView;
-    __weak IBOutlet UIProgressView *_mqImageLoadProgressView;
+    __weak IBOutlet UIProgressView *_msdImageLoadProgressView;
     __strong NSArray<NSURL *> *_URLs;
 }
 
@@ -28,8 +28,8 @@
 {
     _sdImageLoadProgressView.hidden = NO;
     _sdImageLoadProgressView.progress = 0;
-    _mqImageLoadProgressView.hidden = NO;
-    _mqImageLoadProgressView.progress = 0;
+    _msdImageLoadProgressView.hidden = NO;
+    _msdImageLoadProgressView.progress = 0;
 }
 
 - (void)setImageWithURLs:(NSArray<NSURL *> *)URLs
@@ -50,18 +50,18 @@
            strongSelf->_sdImageLoadProgressView.hidden = YES;
         }
     }];
-    
-    NSString *mqCaptureURLStr = URLs[1].absoluteString;
-    [_mqImageView mq_setImageWithURL:URLs[1] groupIdentifier:self.reuseIdentifier placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+
+    NSString *msdCaptureURLStr = URLs[1].absoluteString;
+    [_msdImageView msd_setImageWithURL:URLs[1] groupIdentifier:self.reuseIdentifier placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
         __strong typeof (weakSelf) strongSelf = weakSelf;
-        if (strongSelf && [mqCaptureURLStr isEqualToString:strongSelf->_URLs[1].absoluteString]) {
-            strongSelf->_mqImageLoadProgressView.hidden = NO;
-            strongSelf->_mqImageLoadProgressView.progress = (CGFloat)receivedSize * 1.0 / expectedSize;
+        if (strongSelf && [msdCaptureURLStr isEqualToString:strongSelf->_URLs[1].absoluteString]) {
+            strongSelf->_msdImageLoadProgressView.hidden = NO;
+            strongSelf->_msdImageLoadProgressView.progress = (CGFloat)receivedSize * 1.0 / expectedSize;
         }
     } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         __strong typeof (weakSelf) strongSelf = weakSelf;
-        if (strongSelf && [mqCaptureURLStr isEqualToString:strongSelf->_URLs[1].absoluteString]) {
-            strongSelf->_mqImageLoadProgressView.hidden = YES;
+        if (strongSelf && [msdCaptureURLStr isEqualToString:strongSelf->_URLs[1].absoluteString]) {
+            strongSelf->_msdImageLoadProgressView.hidden = YES;
         }
     }];
 }
