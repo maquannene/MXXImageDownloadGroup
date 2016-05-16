@@ -72,15 +72,13 @@
 {
     self.msd_imageURL = url;
     
-    NSString *captureURLString = url.absoluteString;
-    
     __weak typeof(self) weakSelf = self;
     if (!(options & SDWebImageDelayPlaceholder)) {
         dispatch_main_async_safe(^{
             if (!weakSelf) {
                 return;
             }
-            if ([weakSelf.msd_imageURL.absoluteString isEqualToString:captureURLString]) {
+            if ([weakSelf.msd_imageURL.absoluteString isEqualToString:url.absoluteString]) {
                 weakSelf.image = placeholder;
             }
         });
@@ -90,15 +88,14 @@
         __weak typeof(self) weakSelf = self;
         __block id <SDWebImageOperation> operation = [[SDWebImageManager sharedManager] downloadImageWithURL:url options:options progress:progressBlock completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                if (operation && identifier) {
+                if (identifier) {
                     [[MSDImageDownloadGroupManage shareInstance] removeImageDownLoadOperation:operation fromGroup:identifier forKey:imageURL.absoluteString];
                 }
                 if (!weakSelf) {
                     return;
                 }
-                if ([weakSelf.msd_imageURL.absoluteString isEqualToString:captureURLString]) {
+                if ([weakSelf.msd_imageURL.absoluteString isEqualToString:imageURL.absoluteString]) {
                     weakSelf.msd_operation = nil;
-                    weakSelf.msd_imageURL = nil;
                     weakSelf.msd_downloadGroupIdentifier = nil;
                     if (image) {
                         weakSelf.image = image;
@@ -113,9 +110,9 @@
         
         if (operation && identifier) {
             [[MSDImageDownloadGroupManage shareInstance] setImageDownLoadOperation:operation toGroup:identifier forKey:[url absoluteString]];
-            self.msd_operation = operation;
             self.msd_downloadGroupIdentifier = identifier;
         }
+        self.msd_operation = operation;
     }
     else {
         dispatch_main_async_safe(^{
