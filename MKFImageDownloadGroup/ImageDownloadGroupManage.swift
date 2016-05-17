@@ -80,9 +80,9 @@ public class ImageDownloadGroupManage {
     init() {
         _downloadGroupsArray = [ImageDownloadGroup]()
     }
-
+    
     public func addGroup(group: ImageDownloadGroup) {
-        if !_downloadGroupsArray.isEmpty, let _ = _downloadGroupsArray.filter( { $0._identifier == group._identifier } )[0] as ImageDownloadGroup? {
+        if let groups = _downloadGroupsArray.filter( { $0._identifier == group._identifier } ) as [ImageDownloadGroup]? where groups.count > 0 {
             return
         }
         _downloadGroupsArray.append(group)
@@ -95,8 +95,8 @@ public class ImageDownloadGroupManage {
     }
     
     public func addImageDownloadTask(task: RetrieveImageTask, toGroup identifier: String, forKey key: String) {
-        if !_downloadGroupsArray.isEmpty, let downloadGroup = _downloadGroupsArray.filter( { $0._identifier == identifier } ).first as ImageDownloadGroup? {
-            downloadGroup.addTask(task, forKey: key)
+        if let groups = _downloadGroupsArray.filter( { $0._identifier == identifier } ) as [ImageDownloadGroup]? where groups.count > 0 {
+            groups[0].addTask(task, forKey: key)
             return
         }
         let downloadGroup = ImageDownloadGroup(identifier: identifier)
@@ -105,8 +105,9 @@ public class ImageDownloadGroupManage {
     }
     
     public func removeImageDownloadTask(key: String, fromGroup identifier: String) {
-        if !_downloadGroupsArray.isEmpty, let downloadGroup = _downloadGroupsArray.filter( { $0._identifier == identifier } )[0] as ImageDownloadGroup? {
-            downloadGroup.removeTask(key)
+        if let groups = _downloadGroupsArray.filter( { $0._identifier == identifier } ) as [ImageDownloadGroup]? where groups.count > 0 {
+            groups[0].removeTask(key)
+            return
         }
     }
 }
