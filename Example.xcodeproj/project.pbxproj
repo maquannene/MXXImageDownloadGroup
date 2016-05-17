@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		02C80AB83D29C0832CB7AE79 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB5AC789405F1CD80DBE822E /* Pods_Example.framework */; };
 		D42D1CEB1CAD801000EA0CA9 /* ExCustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42D1CEA1CAD801000EA0CA9 /* ExCustomTableViewCell.m */; };
-		D42EA26F1CE9BF0A0015C8B5 /* MSDImageDownloadGroupManage.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EA26C1CE9BF0A0015C8B5 /* MSDImageDownloadGroupManage.m */; };
-		D42EA2701CE9BF0A0015C8B5 /* UIImageView+msd_WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D42EA26E1CE9BF0A0015C8B5 /* UIImageView+msd_WebCache.m */; };
+		D4A7F2251CEAFBC00007FCE7 /* ImageDownloadGroupManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7F2231CEAFBC00007FCE7 /* ImageDownloadGroupManage.swift */; };
+		D4A7F2261CEAFBC00007FCE7 /* UIImageView+MKF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A7F2241CEAFBC00007FCE7 /* UIImageView+MKF.swift */; };
+		D4A7F22D1CEAFF850007FCE7 /* MSDImageDownloadGroupManage.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A7F22A1CEAFF850007FCE7 /* MSDImageDownloadGroupManage.m */; };
+		D4A7F22E1CEAFF850007FCE7 /* UIImageView+MSD.m in Sources */ = {isa = PBXBuildFile; fileRef = D4A7F22C1CEAFF850007FCE7 /* UIImageView+MSD.m */; };
 		D4F56E471C9FA26C00E27438 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F56E461C9FA26C00E27438 /* main.m */; };
 		D4F56E4A1C9FA26C00E27438 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F56E491C9FA26C00E27438 /* AppDelegate.m */; };
 		D4F56E4D1C9FA26C00E27438 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F56E4C1C9FA26C00E27438 /* ViewController.m */; };
@@ -37,10 +39,13 @@
 		C9630E3768EC55410F960A24 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		D42D1CE91CAD801000EA0CA9 /* ExCustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExCustomTableViewCell.h; sourceTree = "<group>"; };
 		D42D1CEA1CAD801000EA0CA9 /* ExCustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExCustomTableViewCell.m; sourceTree = "<group>"; };
-		D42EA26B1CE9BF0A0015C8B5 /* MSDImageDownloadGroupManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSDImageDownloadGroupManage.h; sourceTree = "<group>"; };
-		D42EA26C1CE9BF0A0015C8B5 /* MSDImageDownloadGroupManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSDImageDownloadGroupManage.m; sourceTree = "<group>"; };
-		D42EA26D1CE9BF0A0015C8B5 /* UIImageView+msd_WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+msd_WebCache.h"; sourceTree = "<group>"; };
-		D42EA26E1CE9BF0A0015C8B5 /* UIImageView+msd_WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+msd_WebCache.m"; sourceTree = "<group>"; };
+		D4A7F2231CEAFBC00007FCE7 /* ImageDownloadGroupManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloadGroupManage.swift; sourceTree = "<group>"; };
+		D4A7F2241CEAFBC00007FCE7 /* UIImageView+MKF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+MKF.swift"; sourceTree = "<group>"; };
+		D4A7F2271CEAFBE60007FCE7 /* Example-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		D4A7F2291CEAFF850007FCE7 /* MSDImageDownloadGroupManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSDImageDownloadGroupManage.h; sourceTree = "<group>"; };
+		D4A7F22A1CEAFF850007FCE7 /* MSDImageDownloadGroupManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSDImageDownloadGroupManage.m; sourceTree = "<group>"; };
+		D4A7F22B1CEAFF850007FCE7 /* UIImageView+MSD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+MSD.h"; sourceTree = "<group>"; };
+		D4A7F22C1CEAFF850007FCE7 /* UIImageView+MSD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+MSD.m"; sourceTree = "<group>"; };
 		D4F56E421C9FA26C00E27438 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F56E461C9FA26C00E27438 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D4F56E481C9FA26C00E27438 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -83,13 +88,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D42EA26A1CE9BF0A0015C8B5 /* MSDImageDownloadGroup */ = {
+		D4A7F2211CEAFB0D0007FCE7 /* MKFImageDownloadGroup */ = {
 			isa = PBXGroup;
 			children = (
-				D42EA26B1CE9BF0A0015C8B5 /* MSDImageDownloadGroupManage.h */,
-				D42EA26C1CE9BF0A0015C8B5 /* MSDImageDownloadGroupManage.m */,
-				D42EA26D1CE9BF0A0015C8B5 /* UIImageView+msd_WebCache.h */,
-				D42EA26E1CE9BF0A0015C8B5 /* UIImageView+msd_WebCache.m */,
+				D4A7F2231CEAFBC00007FCE7 /* ImageDownloadGroupManage.swift */,
+				D4A7F2241CEAFBC00007FCE7 /* UIImageView+MKF.swift */,
+			);
+			path = MKFImageDownloadGroup;
+			sourceTree = "<group>";
+		};
+		D4A7F2281CEAFF850007FCE7 /* MSDImageDownloadGroup */ = {
+			isa = PBXGroup;
+			children = (
+				D4A7F2291CEAFF850007FCE7 /* MSDImageDownloadGroupManage.h */,
+				D4A7F22A1CEAFF850007FCE7 /* MSDImageDownloadGroupManage.m */,
+				D4A7F22B1CEAFF850007FCE7 /* UIImageView+MSD.h */,
+				D4A7F22C1CEAFF850007FCE7 /* UIImageView+MSD.m */,
 			);
 			path = MSDImageDownloadGroup;
 			sourceTree = "<group>";
@@ -97,7 +111,8 @@
 		D4F56E391C9FA26C00E27438 = {
 			isa = PBXGroup;
 			children = (
-				D42EA26A1CE9BF0A0015C8B5 /* MSDImageDownloadGroup */,
+				D4A7F2281CEAFF850007FCE7 /* MSDImageDownloadGroup */,
+				D4A7F2211CEAFB0D0007FCE7 /* MKFImageDownloadGroup */,
 				D4F56E441C9FA26C00E27438 /* Example */,
 				D4F56E431C9FA26C00E27438 /* Products */,
 				19FD20833768FEE82CE7F658 /* Pods */,
@@ -126,6 +141,7 @@
 				D4F56E511C9FA26C00E27438 /* Assets.xcassets */,
 				D4F56E531C9FA26C00E27438 /* LaunchScreen.storyboard */,
 				D4F56E561C9FA26C00E27438 /* Info.plist */,
+				D4A7F2271CEAFBE60007FCE7 /* Example-Bridging-Header.h */,
 				D4F56E451C9FA26C00E27438 /* Supporting Files */,
 			);
 			path = Example;
@@ -262,12 +278,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D42EA26F1CE9BF0A0015C8B5 /* MSDImageDownloadGroupManage.m in Sources */,
+				D4A7F2251CEAFBC00007FCE7 /* ImageDownloadGroupManage.swift in Sources */,
 				D4F56E4D1C9FA26C00E27438 /* ViewController.m in Sources */,
 				D4F56E4A1C9FA26C00E27438 /* AppDelegate.m in Sources */,
 				D42D1CEB1CAD801000EA0CA9 /* ExCustomTableViewCell.m in Sources */,
+				D4A7F2261CEAFBC00007FCE7 /* UIImageView+MKF.swift in Sources */,
 				D4F56E471C9FA26C00E27438 /* main.m in Sources */,
-				D42EA2701CE9BF0A0015C8B5 /* UIImageView+msd_WebCache.m in Sources */,
+				D4A7F22D1CEAFF850007FCE7 /* MSDImageDownloadGroupManage.m in Sources */,
+				D4A7F22E1CEAFF850007FCE7 /* UIImageView+MSD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,7 +405,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "--.Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Example/Example-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -405,7 +423,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "--.Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Example/Example-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

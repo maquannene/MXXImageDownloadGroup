@@ -8,7 +8,7 @@
 
 #import "ExCustomTableViewCell.h"
 @import SDWebImage;
-#import "UIImageView+msd_WebCache.h"
+#import "UIImageView+MSD.h"
 
 @interface ExCustomTableViewCell ()
 

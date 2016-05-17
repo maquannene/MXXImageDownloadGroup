@@ -1,12 +1,12 @@
 //
-//  UIImageView+msd_WebCache.m
+//  UIImageView+MSD.m
 //  vb
 //
 //  Created by 马权 on 3/17/16.
 //  Copyright © 2016 maquan. All rights reserved.
 //
 
-#import "UIImageView+msd_WebCache.h"
+#import "UIImageView+MSD.h"
 #import "SDWebImageManager.h"
 #import "MSDImageDownloadGroupManage.h"
 #import "objc/runtime.h"

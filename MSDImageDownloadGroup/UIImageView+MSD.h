@@ -1,5 +1,5 @@
 //
-//  UIImageView+msd_WebCache.h
+//  UIImageView+MSD.h
 //  vb
 //
 //  Created by 马权 on 3/17/16.
