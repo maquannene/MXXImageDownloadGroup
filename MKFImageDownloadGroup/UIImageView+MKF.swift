@@ -9,7 +9,7 @@
 import Foundation
 import Kingfisher
 
-extension UIImageView {
+public extension UIImageView {
     
     public func mkf_setImageWithURL(URL: NSURL,
                                     identifier: String? = nil,
@@ -93,7 +93,7 @@ private var mkfLastURLKey: Void?
 private var mkfImageTaskKey: Void?
 private var mfkDownloadIdentifierKey: Void?
 
-extension UIImageView {
+public extension UIImageView {
     public var mkf_imageURL: NSURL? {
         return objc_getAssociatedObject(self, &mkfLastURLKey) as? NSURL
     }
