@@ -28,9 +28,9 @@ FOUNDATION_EXPORT NSString *const MSDImageDownloadDefaultGroupIdentifier;
 
 - (void)removeGroupWithIdentifier:(NSString *)identifier;
 
-- (void)setImageDownLoadOperation:(id<SDWebImageOperation>)operation toGroup:(NSString *)identifier forKey:(NSString *)key;
+- (void)addImageDownLoadOperation:(id<SDWebImageOperation>)operation toGroup:(NSString *)identifier forKey:(NSString *)key;
 
-- (void)removeImageDownLoadOperation:(id<SDWebImageOperation>)operation fromGroup:(NSString *)identifier forKey:(NSString *)key;
+- (void)removeImageDownLoadOperation:(NSString *)key fromGroup:(NSString *)identifier;
 
 - (void)debug:(BOOL)debug;
 

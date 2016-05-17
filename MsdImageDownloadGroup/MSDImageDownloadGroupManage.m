@@ -45,6 +45,40 @@ NSString *const MSDImageDownloadDefaultGroupIdentifier = @"msd.download.group.de
     return self;
 }
 
+- (void)addOperation:(id<SDWebImageOperation>)operation forKey:(NSString *)key
+{
+    if (_downloadOperationKeys) {
+        if ([_downloadOperationKeys containsObject:key]) {
+            [_downloadOperationKeys removeObject:key];
+            [_downloadOperationKeys insertObject:key atIndex:0];
+            NSMutableArray<id<SDWebImageOperation>> *operations = _downloadOperationsDic[key];
+            [operations addObject:operation];
+        }
+        else {
+            NSMutableArray<id<SDWebImageOperation>> *operations = [@[operation] mutableCopy];
+            _downloadOperationsDic[key] = operations;
+            [_downloadOperationKeys insertObject:key atIndex:0];
+        }
+        if ([_downloadOperationKeys count] > _maxConcurrentDownloads) {
+            NSString *lastKey = [_downloadOperationKeys lastObject];
+            NSMutableArray<id<SDWebImageOperation>> *lastOperations = _downloadOperationsDic[lastKey];
+            [lastOperations makeObjectsPerformSelector:@selector(cancel)];
+            [_downloadOperationsDic removeObjectForKey:lastKey];
+            [_downloadOperationKeys removeLastObject];
+        }
+    }
+    else {
+        _downloadOperationKeys[0] = key;
+        _downloadOperationsDic[key] = [@[operation] mutableCopy];
+    }
+}
+
+- (void)removeOperation:(NSString *)key
+{
+    [_downloadOperationKeys removeObject:key];
+    [_downloadOperationsDic removeObjectForKey:key];
+}
+
 @end
 
 @implementation MSDImageDownloadGroupManage
@@ -88,48 +122,17 @@ NSString *const MSDImageDownloadDefaultGroupIdentifier = @"msd.download.group.de
     [_downloadGroupsDic removeObjectForKey:identifier];
 }
 
-- (void)setImageDownLoadOperation:(id<SDWebImageOperation>)operation toGroup:(NSString *)identifier forKey:(NSString *)key
+- (void)addImageDownLoadOperation:(id<SDWebImageOperation>)operation toGroup:(NSString *)identifier forKey:(NSString *)key
 {
     MSDImageDownloadGroup *downloadGroup = _downloadGroupsDic[identifier];
     if (!downloadGroup) {
         downloadGroup = [[MSDImageDownloadGroup alloc] initWithGroupIdentifier:identifier];
         _downloadGroupsDic[identifier] = downloadGroup;
     }
-    
-    NSMutableArray<NSString *> *downloadOperationKeys = downloadGroup->_downloadOperationKeys;
-    
-    if (downloadGroup && downloadOperationKeys) {
-        if ([downloadOperationKeys containsObject:key]) {
-            [downloadOperationKeys removeObject:key];
-            [downloadOperationKeys insertObject:key atIndex:0];
-            NSMutableArray<id<SDWebImageOperation>> *operations = downloadGroup->_downloadOperationsDic[key];
-            [operations addObject:operation];
-        }
-        else {
-            NSMutableArray<id<SDWebImageOperation>> *operations = [@[operation] mutableCopy];
-            downloadGroup->_downloadOperationsDic[key] = operations;
-            [downloadOperationKeys insertObject:key atIndex:0];
-        }
-        if ([downloadOperationKeys count] > downloadGroup.maxConcurrentDownloads) {
-            NSString *lastKey = [downloadOperationKeys lastObject];
-            NSMutableArray<id<SDWebImageOperation>> *lastOperations = downloadGroup->_downloadOperationsDic[lastKey];
-            [lastOperations makeObjectsPerformSelector:@selector(cancel)];
-            [downloadGroup->_downloadOperationsDic removeObjectForKey:lastKey];
-            [downloadOperationKeys removeLastObject];
-        }
-    }
-    else {
-        NSMutableArray<id<SDWebImageOperation>> *operations = [@[operation] mutableCopy];
-        
-        downloadGroup = [[MSDImageDownloadGroup alloc] initWithGroupIdentifier:identifier];
-        _downloadGroupsDic[identifier] = downloadGroup;
-        
-        downloadGroup->_downloadOperationKeys[0] = identifier;
-        downloadGroup->_downloadOperationsDic[identifier] = operations;
-    }
+    [downloadGroup addOperation:operation forKey:key];
 }
 
-- (void)removeImageDownLoadOperation:(id<SDWebImageOperation>)operation fromGroup:(NSString *)identifier forKey:(NSString *)key
+- (void)removeImageDownLoadOperation:(NSString *)key fromGroup:(NSString *)identifier
 {
     if (_debug) {
         NSLog(@"groups count = %lu\n", (unsigned long)_downloadGroupsDic.count);
@@ -143,14 +146,8 @@ NSString *const MSDImageDownloadDefaultGroupIdentifier = @"msd.download.group.de
             }];
         }];
     }
-
     MSDImageDownloadGroup *downloadGroup = _downloadGroupsDic[identifier];
-    NSMutableArray<id<SDWebImageOperation>> *operations = downloadGroup->_downloadOperationsDic[key];
-    [operations removeObject:operation];
-    if (operations.count == 0) {
-        [downloadGroup->_downloadOperationKeys removeObject:key];
-        [downloadGroup->_downloadOperationsDic removeObjectForKey:key];
-    }
+    [downloadGroup removeOperation:key];
 }
 
 static BOOL _debug = NO;

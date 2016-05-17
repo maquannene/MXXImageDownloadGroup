@@ -71,16 +71,10 @@
                  completed:(SDWebImageCompletionBlock)completedBlock
 {
     self.msd_imageURL = url;
-    
-    __weak typeof(self) weakSelf = self;
+
     if (!(options & SDWebImageDelayPlaceholder)) {
         dispatch_main_async_safe(^{
-            if (!weakSelf) {
-                return;
-            }
-            if ([weakSelf.msd_imageURL.absoluteString isEqualToString:url.absoluteString]) {
-                weakSelf.image = placeholder;
-            }
+            self.image = placeholder;
         });
     }
     
@@ -89,27 +83,34 @@
         __block id <SDWebImageOperation> operation = [[SDWebImageManager sharedManager] downloadImageWithURL:url options:options progress:progressBlock completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (identifier) {
-                    [[MSDImageDownloadGroupManage shareInstance] removeImageDownLoadOperation:operation fromGroup:identifier forKey:imageURL.absoluteString];
-                }
-                if (!weakSelf) {
-                    return;
+                    [[MSDImageDownloadGroupManage shareInstance] removeImageDownLoadOperation:imageURL.absoluteString fromGroup:identifier];
                 }
                 if ([weakSelf.msd_imageURL.absoluteString isEqualToString:imageURL.absoluteString]) {
                     weakSelf.msd_operation = nil;
                     weakSelf.msd_downloadGroupIdentifier = nil;
-                    if (image) {
-                        weakSelf.image = image;
+                }
+                if (image && (options & SDWebImageAvoidAutoSetImage) && completedBlock)
+                {
+                    completedBlock(image, error, cacheType, url);
+                    return;
+                }
+                else if (image) {
+                    weakSelf.image = image;
+                    [weakSelf setNeedsLayout];
+                } else {
+                    if ((options & SDWebImageDelayPlaceholder)) {
+                        weakSelf.image = placeholder;
                         [weakSelf setNeedsLayout];
                     }
                 }
                 if (completedBlock && finished) {
-                    completedBlock(image, error, cacheType, imageURL);
+                    completedBlock(image, error, cacheType, url);
                 }
             });
         }];
         
         if (operation && identifier) {
-            [[MSDImageDownloadGroupManage shareInstance] setImageDownLoadOperation:operation toGroup:identifier forKey:[url absoluteString]];
+            [[MSDImageDownloadGroupManage shareInstance] addImageDownLoadOperation:operation toGroup:identifier forKey:[url absoluteString]];
             self.msd_downloadGroupIdentifier = identifier;
         }
         self.msd_operation = operation;
@@ -131,7 +132,7 @@
         return;
     }
     [operation cancel];
-    [[MSDImageDownloadGroupManage shareInstance] removeImageDownLoadOperation:operation fromGroup:self.msd_downloadGroupIdentifier forKey:self.msd_imageURL.absoluteString];
+    [[MSDImageDownloadGroupManage shareInstance] removeImageDownLoadOperation:self.msd_imageURL.absoluteString fromGroup:self.msd_downloadGroupIdentifier];
     self.msd_operation = nil;
     self.msd_imageURL = nil;
     self.msd_downloadGroupIdentifier = nil;
