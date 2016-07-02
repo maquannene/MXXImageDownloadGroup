@@ -34,4 +34,7 @@ FOUNDATION_EXPORT NSString *const MSDImageDownloadDefaultGroupIdentifier;
 
 - (void)debug:(BOOL)debug;
 
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)new NS_UNAVAILABLE;
+
 @end

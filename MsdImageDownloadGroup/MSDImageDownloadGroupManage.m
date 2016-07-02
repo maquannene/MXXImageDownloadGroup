@@ -92,12 +92,12 @@ NSString *const MSDImageDownloadDefaultGroupIdentifier = @"msd.download.group.de
     static id instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[MSDImageDownloadGroupManage alloc] init];
+        instance = [[super allocWithZone:nil] init_Private];
     });
     return instance;
 }
 
-- (instancetype)init
+- (instancetype)init_Private
 {
     self = [super init];
     if (self) {
@@ -106,6 +106,15 @@ NSString *const MSDImageDownloadDefaultGroupIdentifier = @"msd.download.group.de
     return self;
 }
 
+//  MARK: Rewrite
++ (id)allocWithZone:(struct _NSZone *)zone {
+    return [MSDImageDownloadGroupManage shareInstance];
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    return self;
+}
 
 //  MARK: Public
 - (void)addGroup:(MSDImageDownloadGroup *)group

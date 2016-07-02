@@ -89,7 +89,7 @@ public class ImageDownloadGroupManage {
     }
     
     public func removeGroup(identifier: String) {
-        if let index = _downloadGroupsArray.indexOf({ $0._identifier == identifier }) {
+        if let index = _downloadGroupsArray.indexOf( { $0._identifier == identifier } ) {
             _downloadGroupsArray.removeAtIndex(index)
         }
     }
